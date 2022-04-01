@@ -1,0 +1,10 @@
+<h2>relação de livros para leitura:</h2>
+<div>
+    {{#each livros}}
+        <div class="livros-container">
+            <a href="/livros/{{this.id}}">#{{this.id}} </a>- <span class="negrito">{{this.titulo}}</span> - {{this.paginas}} paginas <form class="formbutton"><a href="/livros/edicao/{{this.id}}"><button></button><img src="/imagens/editar.png"></button></a></form><form action="/livros/remover/{{this.id}}" method="post" class="formbutton"><input type="submit" id="deletar" placeholder=""></form>
+        </div>  
+    {{/each}}
+</div>
+<br><br>
+<h2><a href="/">Voltar para a página home</a></h2>

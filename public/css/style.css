@@ -1,0 +1,50 @@
+#navbar {
+  background-color: aquamarine;
+  border-bottom: 1px solid burlywood;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+footer {
+  background-color: aquamarine;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  background-color: black;
+}
+li {
+  color: white;
+}
+.center {
+  text-align: center;
+}
+
+form {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.livros-container {
+  background-color: bisque;
+  width: 850px;
+  margin: 5px auto;
+  border-bottom: 1px solid burlywood;
+  padding: 5px;
+  justify-items: center;
+  display: flex;
+}
+.negrito {
+  font-weight: bold;
+}
+
+.formbutton {
+  width: 50px;
+}
+
+#deletar {
+  background: url(/imagens/deletar.png);
+  width: 32px;
+  height: 32px;
+}

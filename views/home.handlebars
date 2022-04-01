@@ -1,0 +1,66 @@
+<h3>1.8 - Como configurar o express para coletar o conteúdo do body JSON que será enviado no método post:</h3>
+<p>configurando o encode UTF-8 com o método urlencoded do express:</p>
+<ul>
+    <li>app.use(express.urlencoded({
+        <ul>
+            <li>extended: true,</li>
+        </ul>
+    </li>
+    <li>})</li>
+</ul>
+<p>Executando método JSON do express</p>
+<ul>
+    <li>app.use(express.json())</li>
+</ul>
+
+<h3>1.9 - Criando o método post para cadastro de livro:</h3>
+<ul>
+    <li>app.post('/livros/inserirlivro', function (req, res) {
+        <ul>
+            <li>/* Cria as variáveis que armazenam os valores a serem lidos do body enviado pelo usuário */</li>
+            <li>const titulo = req.body.titulo</li>
+            <li>const paginas = req.body.paginas</li>
+            <br>
+            <li>/* Cria a query que será executada no mysql */</li>
+            <li>const sqlIserir = `INSERT INTO livros (titulo, paginas) VALUES ('${titulo}', '${paginas}')`</li>
+            <br>
+            <li>/* Executa o método query com a query que deverá ser executada, neste caso o sqlIserir */</li>
+            <li>conexao.query(sqlIserir, function (erro) {
+                <ul>
+                    <li>if (erro) {
+                        <ul>
+                            <li>console.log(erro)</li>
+                        </ul>
+                    </li>
+                    <li>}</li>
+                    <li>res.redirect('/cadastro')</li>
+                </ul>
+            </li>
+            <li>})</li>
+        </ul>
+    </li>
+    <li>})</li>
+</ul>
+<h2>1.10 - Criando a view de que resgata os dados da tabela livro:</h2>
+<p>De forma semelhante ao post porém com o método get, criamos a rota para página com query que deve ser executada e passamos o dado para view no render:</p>
+<ul>
+    <li>app.get('livros', function (req, res) {
+        const sqlselect = `SELECT * FROM livros`
+        <br>
+        conexao.query(sqlselect, function (erro, data) {
+            <ul>
+                <li>if (erro) {
+                    <ul>
+                        <li>console.log(erro)</li>
+                    </ul>
+                </li>
+                <li>}</li>
+                <li>const livros = data</li>
+                <li>res.render('livros', { livros })</li>
+
+            </ul>
+        <li>})</li>    
+    </li>
+    <li>})</li>
+</ul>
+<p>observação importante: para quem usa o mysql8, o mesmo trabalha por padrão com métodos plugáveis SHA2 de autenticação ao inves do antigo native que é antigo, assim se você usa o Mysql8 recomendo usar o pacote mysql2 no import do mysql ou aterar o mysql para trabalhar com o native (ALTER USER 'usuario'@'localhost' IDENTIFIED WITH mysql_native_password BY ''), sendo para este exemplo foi usado o pacote mysql no nodejs</p>
